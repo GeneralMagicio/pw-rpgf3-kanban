@@ -11,7 +11,7 @@ const ProjectCategories = [
   "DAO Tooling",
   "Governance Tools",
   "DeFi, Decentralized Finance",
-  "DAO, ReFi, Regenerative Finance",
+  "ReFi, Regenerative Finance",
   "Exchanges, DEX, Trading & Liquidity",
   "Developer Education & Mentoring",
   "Developer Tools - Nodes",
