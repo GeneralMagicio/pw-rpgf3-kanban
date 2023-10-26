@@ -11,7 +11,7 @@ const ProjectCategories = [
   "DAO Tooling",
   "Governance Tools",
   "DeFi, Decentralized Finance",
-  "ReFi, Regenerative Finance",
+  "DAO, ReFi, Regenerative Finance",
   "Exchanges, DEX, Trading & Liquidity",
   "Developer Education & Mentoring",
   "Developer Tools - Nodes",
@@ -22,7 +22,6 @@ const ProjectCategories = [
   "NFTs, POAPs & Collectibles",
   "Wallet & Key Management",
   "Fundraising & Capital",
-  "Music & Creative NFTs",
   "Web3 Education & Adoption",
   "Reputations & Rewards",
   "Local Blockchain Communities",
@@ -32,9 +31,7 @@ const ProjectCategories = [
   "Ethereum Infrastructure",
   "Messaging & Social Networks",
   "Smart Contract Auditing & Security",
-  "DAOs",
   "Marketplaces & Auctions",
-  "Banking & Payments",
 ];
 
 const individualCategories = [
