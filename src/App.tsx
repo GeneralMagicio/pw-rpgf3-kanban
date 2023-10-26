@@ -126,6 +126,7 @@ export default function App() {
   const [applicationType, setApplicationType] =
     useState<ApplicationType>("PROJECT");
   const [flagReason, setFlagReason] = useState<string>("");
+  const [filter, setFilter] = useState<string>("");
 
   const [categories, setCategories] = useState<string[]>([]);
 
@@ -235,6 +236,13 @@ export default function App() {
         >
           {applicationType}
         </button>
+        <input
+          type="text"
+          className="p-2 bg-gray-800 w-96"
+          placeholder="Filter…"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
       </div>
       <div className="flex">
         <div
@@ -278,7 +286,14 @@ export default function App() {
           >
             <h2 className="mb-4 text-2xl">{category}</h2>
             {applications
-              .filter((app) => app.pwCategory === category)
+              .filter((app) =>
+                filter
+                  ? app.displayName
+                      .toLowerCase()
+                      .includes(filter.toLowerCase()) &&
+                    app.pwCategory === category
+                  : app.pwCategory === category
+              )
               .map((app) => (
                 <div
                   className="p-2 mb-2 bg-gray-800 border cursor-pointer"
