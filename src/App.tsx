@@ -306,7 +306,7 @@ export default function App() {
                 )
                 .map((app) => (
                   <div
-                    className="p-2 mb-2 bg-gray-800 border cursor-pointer"
+                    className="p-2 mb-2 bg-gray-800 border cursor-pointer active:text-gray-500 active:bg-gray-700"
                     key={app.applicantAddress}
                     draggable
                     onDragStart={(e) =>
@@ -326,7 +326,7 @@ export default function App() {
           ))}
         </div>
         {selectedApp && (
-          <div className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full gap-2 bg-gray-500 bg-opacity-50">
+          <div className="fixed top-0 left-0 z-20 flex flex-col items-center justify-center w-full h-full gap-2 bg-gray-500 bg-opacity-50">
             <div className="w-[900px] text-right">
               <button
                 className="px-4 py-2 rounded-full bg-slate-400"
@@ -335,7 +335,7 @@ export default function App() {
                 X
               </button>
             </div>
-            <div className="w-[900px] p-5 overflow-scroll text-white bg-black rounded max-h-[800px]">
+            <div className="w-[900px] p-5 overflow-scroll text-white bg-black rounded max-h-[600px] z-20">
               <div className="flex flex-col gap-5">
                 <h2 className="text-xl">{selectedApp.displayName}</h2>
                 <p>Applicant address: {selectedApp.applicantAddress}</p>
