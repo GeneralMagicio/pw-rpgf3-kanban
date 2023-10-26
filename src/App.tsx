@@ -222,81 +222,50 @@ export default function App() {
   };
 
   return (
-    <div className="container w-full p-10">
-      <div className="flex items-center justify-start gap-5">
-        <h1 className="mb-4 ml-4 text-4xl">Organise projects</h1>
-        Application type:{" "}
-        <button
-          onClick={() =>
-            applicationType === "PROJECT"
-              ? setApplicationType("INDIVIDUAL")
-              : setApplicationType("PROJECT")
-          }
-          className="px-4 py-2 bg-green-800 border rounded"
-        >
-          {applicationType}
-        </button>
-        <input
-          type="text"
-          className="p-2 bg-gray-800 w-96"
-          placeholder="Filter…"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        />
-      </div>
-      <div className="flex">
-        <div
-          className="flex-1 p-4"
-          key={undefined}
-          onDrop={(e) => handleDrop(e, undefined)}
-          onDragOver={(e) => e.preventDefault()}
-        >
-          {" "}
-          <h2 className="w-56 mb-4 text-2xl h-28">Uncategorized</h2>
-          {applications
-            .filter(
-              (app) =>
-                !app.pwCategory &&
-                app.applicantType === applicationType &&
-                !app.pwIsFlagged
-            )
-            .map((app) => (
-              <div
-                className="p-2 mb-2 bg-orange-800 border cursor-pointer"
-                key={app.applicantAddress}
-                draggable
-                onDragStart={(e) => handleDragStart(e, app.applicantAddress)}
-                onClick={() => handleClick(app)}
-              >
-                <img
-                  src={app.profileImageUrl}
-                  className="w-10 h-10 rounded-full"
-                  loading="lazy"
-                />
-                {app.displayName}
-              </div>
-            ))}
+    <>
+      <div className="fixed w-full p-10">
+        <div className="flex items-center justify-start gap-5">
+          <h1 className="mb-4 ml-4 text-4xl">Organise projects</h1>
+          Application type:{" "}
+          <button
+            onClick={() =>
+              applicationType === "PROJECT"
+                ? setApplicationType("INDIVIDUAL")
+                : setApplicationType("PROJECT")
+            }
+            className="px-4 py-2 bg-green-800 border rounded"
+          >
+            {applicationType}
+          </button>
+          <input
+            type="text"
+            className="p-2 bg-gray-800 w-96"
+            placeholder="Filter…"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
         </div>
-        {categories.map((category) => (
+      </div>
+      <div className="container w-full p-10 pt-28">
+        <div className="flex">
           <div
             className="flex-1 p-4"
-            key={category}
-            onDrop={(e) => handleDrop(e, category)}
+            key={undefined}
+            onDrop={(e) => handleDrop(e, undefined)}
             onDragOver={(e) => e.preventDefault()}
           >
-            <h2 className="w-56 mb-4 text-2xl h-28">{category}</h2>
+            {" "}
+            <h2 className="w-56 mb-4 text-2xl h-28">Uncategorized</h2>
             {applications
-              .filter((app) =>
-                filter
-                  ? app.displayName
-                      .toLowerCase()
-                      .includes(filter.toLowerCase()) &&
-                    app.pwCategory === category
-                  : app.pwCategory === category
+              .filter(
+                (app) =>
+                  !app.pwCategory &&
+                  app.applicantType === applicationType &&
+                  !app.pwIsFlagged
               )
               .map((app) => (
                 <div
-                  className="p-2 mb-2 bg-gray-800 border cursor-pointer"
+                  className="p-2 mb-2 bg-orange-800 border cursor-pointer"
                   key={app.applicantAddress}
                   draggable
                   onDragStart={(e) => handleDragStart(e, app.applicantAddress)}
@@ -311,84 +280,125 @@ export default function App() {
                 </div>
               ))}
           </div>
-        ))}
-      </div>
-      {selectedApp && (
-        <div className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full gap-2 bg-gray-500 bg-opacity-50">
-          <div className="w-[700px] text-right">
-            <button
-              className="px-4 py-2 rounded-full bg-slate-400"
-              onClick={closePopup}
+          {categories.map((category) => (
+            <div
+              className="flex-1 p-4"
+              key={category}
+              onDrop={(e) => handleDrop(e, category)}
+              onDragOver={(e) => e.preventDefault()}
             >
-              X
-            </button>
-          </div>
-          <div className="w-[700px] p-5 overflow-scroll text-white bg-black rounded max-h-[600px]">
-            <div className="flex flex-col gap-5">
-              <h2>{selectedApp.displayName}</h2>
-              <p>{selectedApp.contributionDescription}</p>
-              <p>{selectedApp.impactDescription}</p>
-              <p>
-                <a href={selectedApp.websiteUrl} target="_blank">
-                  {selectedApp.websiteUrl}
-                </a>
-              </p>
-              <h2 className="text-xl">Contribution links</h2>
-              {selectedApp.contributionLinks.map((link) => (
-                <div key={link.url}>
-                  <a href={link.url} target="_blank">
-                    {link.type} - {link.description}
+              <h2 className="w-56 mb-4 text-2xl h-28">{category}</h2>
+              {applications
+                .filter((app) =>
+                  filter
+                    ? app.displayName
+                        .toLowerCase()
+                        .includes(filter.toLowerCase()) &&
+                      app.pwCategory === category &&
+                      app.applicantType === applicationType
+                    : app.pwCategory === category &&
+                      app.applicantType === applicationType
+                )
+                .map((app) => (
+                  <div
+                    className="p-2 mb-2 bg-gray-800 border cursor-pointer"
+                    key={app.applicantAddress}
+                    draggable
+                    onDragStart={(e) =>
+                      handleDragStart(e, app.applicantAddress)
+                    }
+                    onClick={() => handleClick(app)}
+                  >
+                    <img
+                      src={app.profileImageUrl}
+                      className="w-10 h-10 rounded-full"
+                      loading="lazy"
+                    />
+                    {app.displayName}
+                  </div>
+                ))}
+            </div>
+          ))}
+        </div>
+        {selectedApp && (
+          <div className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full gap-2 bg-gray-500 bg-opacity-50">
+            <div className="w-[900px] text-right">
+              <button
+                className="px-4 py-2 rounded-full bg-slate-400"
+                onClick={closePopup}
+              >
+                X
+              </button>
+            </div>
+            <div className="w-[900px] p-5 overflow-scroll text-white bg-black rounded max-h-[800px]">
+              <div className="flex flex-col gap-5">
+                <h2 className="text-xl">{selectedApp.displayName}</h2>
+                <p>Applicant address: {selectedApp.applicantAddress}</p>
+                <p>Application UID: {selectedApp.RPGF3_Application_UID}</p>
+                <p>{selectedApp.contributionDescription}</p>
+                <p>{selectedApp.impactDescription}</p>
+                <p>
+                  <a href={selectedApp.websiteUrl} target="_blank">
+                    {selectedApp.websiteUrl}
                   </a>
+                </p>
+                <h2 className="text-xl">Contribution links</h2>
+                {selectedApp.contributionLinks.map((link) => (
+                  <div key={link.url}>
+                    <a href={link.url} target="_blank">
+                      {link.type} - {link.description}
+                    </a>
+                  </div>
+                ))}
+                <h2 className="text-xl">Impact metrics</h2>
+                {selectedApp.impactMetrics.map((metric) => (
+                  <div key={metric.url}>
+                    <a href={metric.url} target="_blank">
+                      {metric.description} - {metric.number}
+                    </a>
+                  </div>
+                ))}
+                <h2 className="text-xl">Funding sources</h2>
+                {selectedApp.fundingSources.map((source) => (
+                  <div key={source.description}>
+                    {source.type} - {source.currency} - {source.amount} -{" "}
+                    {source.description}
+                  </div>
+                ))}
+                <div className="flex flex-col gap-2 p-5 bg-red-800">
+                  <h2 className="text-xl">Switch applicant type</h2>
+                  <button
+                    className="p-2 mt-2 border rounded"
+                    onClick={() => handleSwitchApplicantType(selectedApp)}
+                  >
+                    {selectedApp.applicantType === "PROJECT"
+                      ? "Switch to individual"
+                      : "Switch to project"}
+                  </button>
+                  <h2 className="text-xl">Flag this application</h2>
+                  <div>
+                    <label htmlFor="flagReason" className="block mt-2">
+                      Flag reason
+                    </label>
+                    <textarea
+                      id="flagReason"
+                      value={flagReason}
+                      onChange={(e) => setFlagReason(e.target.value)}
+                      className="w-full p-2 mt-1 bg-red-900 border rounded "
+                    ></textarea>
+                  </div>
+                  <button
+                    onClick={handleFlag}
+                    className="p-2 mt-2 border rounded"
+                  >
+                    Flag
+                  </button>
                 </div>
-              ))}
-              <h2 className="text-xl">Impact metrics</h2>
-              {selectedApp.impactMetrics.map((metric) => (
-                <div key={metric.url}>
-                  <a href={metric.url} target="_blank">
-                    {metric.description} - {metric.number}
-                  </a>
-                </div>
-              ))}
-              <h2 className="text-xl">Funding sources</h2>
-              {selectedApp.fundingSources.map((source) => (
-                <div key={source.description}>
-                  {source.type} - {source.currency} - {source.amount} -{" "}
-                  {source.description}
-                </div>
-              ))}
-              <div className="flex flex-col gap-2 p-5 bg-red-800">
-                <h2 className="text-xl">Switch applicant type</h2>
-                <button
-                  className="p-2 mt-2 border rounded"
-                  onClick={() => handleSwitchApplicantType(selectedApp)}
-                >
-                  {selectedApp.applicantType === "PROJECT"
-                    ? "Switch to individual"
-                    : "Switch to project"}
-                </button>
-                <h2 className="text-xl">Flag this application</h2>
-                <div>
-                  <label htmlFor="flagReason" className="block mt-2">
-                    Flag reason
-                  </label>
-                  <textarea
-                    id="flagReason"
-                    value={flagReason}
-                    onChange={(e) => setFlagReason(e.target.value)}
-                    className="w-full p-2 mt-1 bg-red-900 border rounded "
-                  ></textarea>
-                </div>
-                <button
-                  onClick={handleFlag}
-                  className="p-2 mt-2 border rounded"
-                >
-                  Flag
-                </button>
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
