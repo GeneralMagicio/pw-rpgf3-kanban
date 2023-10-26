@@ -180,9 +180,11 @@ export default function App() {
             : app
         )
       );
+      setFlagReason("");
       closePopup();
     }
   };
+
   const handleDrop = (e: DragEvent, category: string | undefined) => {
     e.preventDefault();
     const appId = e.dataTransfer.getData("appId");
@@ -223,7 +225,7 @@ export default function App() {
 
   return (
     <>
-      <div className="fixed w-full p-10">
+      <div className="fixed z-10 w-full p-10 bg-black">
         <div className="flex items-center justify-start gap-5">
           <h1 className="mb-4 ml-4 text-4xl">Organise projects</h1>
           Application type:{" "}
@@ -246,7 +248,7 @@ export default function App() {
           />
         </div>
       </div>
-      <div className="container w-full p-10 pt-28">
+      <div className="container w-full">
         <div className="flex">
           <div
             className="flex-1 p-4"
@@ -254,8 +256,9 @@ export default function App() {
             onDrop={(e) => handleDrop(e, undefined)}
             onDragOver={(e) => e.preventDefault()}
           >
-            {" "}
-            <h2 className="w-56 mb-4 text-2xl h-28">Uncategorized</h2>
+            <div className="sticky top-0 flex items-end w-56 pb-3 mb-4 text-2xl bg-black h-60">
+              Uncategorized
+            </div>
             {applications
               .filter(
                 (app) =>
@@ -287,7 +290,9 @@ export default function App() {
               onDrop={(e) => handleDrop(e, category)}
               onDragOver={(e) => e.preventDefault()}
             >
-              <h2 className="w-56 mb-4 text-2xl h-28">{category}</h2>
+              <div className="sticky top-0 flex items-end w-56 pb-3 mb-4 text-2xl bg-black h-60">
+                {category}
+              </div>
               {applications
                 .filter((app) =>
                   filter
