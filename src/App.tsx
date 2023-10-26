@@ -11,7 +11,7 @@ type Application = {
   websiteUrl: string;
 };
 
-const categories = [
+const ProjectCategories = [
   "AI, Artificial Intelligence & Security",
   "Asset Management & Portfolio Tools",
   "Data Analytics & Insights",
@@ -50,14 +50,45 @@ const categories = [
   "Banking & Payments",
 ];
 
+const individualCategories = [
+  "Development & Infrastructure",
+  "Blockchain Development",
+  "Layer 2 & Cross-Chain Solutions",
+  "Finance & DeFi",
+  "Fundraising & Capital Allocation",
+  "Governance & Tokenomics",
+  "Security & Auditing",
+  "Community Building",
+  "User Experience & Adoption",
+  "Content Creation & Media",
+  "News & Marketing",
+  "Blockchain Education",
+  "Mentorship & Resources",
+  "Creative NFTs & Art",
+  "Music & Audio NFTs",
+  "Identity & Privacy Management",
+  "User Testing & Quality Assurance",
+  "International & Multilingual Support",
+  "Legal & Regulatory Compliance",
+  "Partnerships & Collaborations",
+  "Specialized & Niche Contributions",
+];
+
+type ApplicationType = "PROJECT" | "INDIVIDUAL";
+
+const dataDir = "pw-retropgf3-categorize/data";
+
 export default function App() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [selectedApp, setSelectedApp] = useState<Application | null>(null);
+  const [applicationType, setApplicationType] =
+    useState<ApplicationType>("PROJECT");
+
+  const [categories, setCategories] = useState<string[]>([]);
 
   // Load applications from JSON files
   useEffect(() => {
     (async () => {
-      const dataDir = "../data";
       const files = await fs.readdir(dataDir);
       console.log(files);
 
@@ -73,13 +104,21 @@ export default function App() {
     })();
   }, []);
 
+  useEffect(() => {
+    if (applicationType === "PROJECT") {
+      setCategories(ProjectCategories);
+    } else {
+      setCategories(individualCategories);
+    }
+  }, [applicationType]);
+
   const handleDragStart = (e: DragEvent, id: string) => {
     e.dataTransfer.setData("appId", id);
   };
 
   const saveApp = async (app: Application) => {
     await fs.writeFile(
-      `../data/${app.applicantAddress}.json`,
+      `${dataDir}/${app.applicantAddress}.json`,
       JSON.stringify(app, null, 2)
     );
   };
@@ -105,7 +144,20 @@ export default function App() {
 
   return (
     <div className="container w-full p-10">
-      <h1 className="mb-4 ml-4 text-4xl">Organise projects</h1>
+      <div className="flex items-center justify-start gap-5">
+        <h1 className="mb-4 ml-4 text-4xl">Organise projects</h1>
+        Application type:{" "}
+        <button
+          onClick={() =>
+            applicationType === "PROJECT"
+              ? setApplicationType("INDIVIDUAL")
+              : setApplicationType("PROJECT")
+          }
+          className="px-4 py-2 bg-green-800 border rounded"
+        >
+          {applicationType}
+        </button>
+      </div>
       <div className="flex">
         {categories.map((category) => (
           <div
