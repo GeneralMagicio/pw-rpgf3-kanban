@@ -17,6 +17,7 @@ const ProjectCategories = [
   "Developer Education & Mentoring",
   "Developer Tools - Nodes",
   "Developer Tools - Wallets",
+  "Wallet and wallet tools",
   "Developer Tools - Smart Contracts",
   "Developer Tools - Other",
   "Gaming & Entertainment",
