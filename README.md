@@ -1,6 +1,6 @@
 # pw-rpgf3-kanban
 
-Sort rpgf3 applucations using a kanban board.
+Sort rpgf3 applications using a kanban board.
 
 ## Prerequisites
 
