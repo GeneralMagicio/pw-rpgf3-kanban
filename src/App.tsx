@@ -1,14 +1,16 @@
-import React, { useState, useEffect, DragEvent } from "react";
+import { useState, useEffect, DragEvent } from "react";
 
 import fs from "vite-plugin-fs/browser";
 
 type Application = {
   applicantAddress: string;
   displayName: string;
-  pwCategory: string;
+  pwCategory?: string;
   contributionDescription: string;
   impactDescription: string;
   websiteUrl: string;
+  pwIsFlagged?: boolean;
+  pwFlaggedReason?: string;
 };
 
 const ProjectCategories = [
@@ -83,6 +85,7 @@ export default function App() {
   const [selectedApp, setSelectedApp] = useState<Application | null>(null);
   const [applicationType, setApplicationType] =
     useState<ApplicationType>("PROJECT");
+  const [flagReason, setFlagReason] = useState<string>("");
 
   const [categories, setCategories] = useState<string[]>([]);
 
@@ -123,6 +126,22 @@ export default function App() {
     );
   };
 
+  const handleFlag = async () => {
+    if (selectedApp) {
+      delete selectedApp.pwCategory;
+      selectedApp.pwIsFlagged = true;
+      selectedApp.pwFlaggedReason = flagReason;
+      await saveApp(selectedApp);
+      setApplications(
+        applications.map((app) =>
+          app.applicantAddress === selectedApp.applicantAddress
+            ? selectedApp
+            : app
+        )
+      );
+      closePopup();
+    }
+  };
   const handleDrop = (e: DragEvent, category: string) => {
     e.preventDefault();
     const appId = e.dataTransfer.getData("appId");
@@ -198,6 +217,24 @@ export default function App() {
                   {selectedApp.websiteUrl}
                 </a>
               </p>
+            </div>
+            <div className="mt-4">
+              <h2 className="text-xl">Flag this application</h2>
+              <label htmlFor="flagReason" className="block mt-2">
+                Flag reason
+              </label>
+              <textarea
+                id="flagReason"
+                value={flagReason}
+                onChange={(e) => setFlagReason(e.target.value)}
+                className="w-full p-2 mt-1 text-black border rounded bg-slate-400"
+              ></textarea>
+              <button
+                onClick={handleFlag}
+                className="p-2 mt-2 text-white bg-red-600 rounded"
+              >
+                Flag
+              </button>
             </div>
           </div>
         </div>
