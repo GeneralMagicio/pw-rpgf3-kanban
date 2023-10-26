@@ -252,7 +252,7 @@ export default function App() {
           onDragOver={(e) => e.preventDefault()}
         >
           {" "}
-          <h2 className="mb-4 text-2xl">Uncategorized</h2>
+          <h2 className="w-56 mb-4 text-2xl h-28">Uncategorized</h2>
           {applications
             .filter(
               (app) =>
@@ -284,7 +284,7 @@ export default function App() {
             onDrop={(e) => handleDrop(e, category)}
             onDragOver={(e) => e.preventDefault()}
           >
-            <h2 className="mb-4 text-2xl">{category}</h2>
+            <h2 className="w-56 mb-4 text-2xl h-28">{category}</h2>
             {applications
               .filter((app) =>
                 filter
