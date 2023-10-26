@@ -23,7 +23,6 @@ const ProjectCategories = [
   "Gaming & Entertainment",
   "NFTs, POAPs & Collectibles",
   "Fundraising & Capital",
-  "Web3 Education & Adoption",
   "Web3 Community Engagement",
   "Web3 Education & Skill Development",
   "Reputations & Rewards",
