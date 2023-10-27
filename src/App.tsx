@@ -16,6 +16,7 @@ const ProjectCategories = [
   "Wallet and wallet tools",
   "Developer Tools - Smart Contracts",
   "Developer Tools - Other",
+  "Blockchain Developer Hub",
   "Gaming & Entertainment",
   "NFTs, POAPs & Collectibles",
   "Fundraising & Capital",
