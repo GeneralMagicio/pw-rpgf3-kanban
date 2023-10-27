@@ -3,7 +3,6 @@ import { useState, useEffect, DragEvent } from "react";
 import fs from "vite-plugin-fs/browser";
 
 const ProjectCategories = [
-  "AI, Artificial Intelligence & Security",
   "Asset Management & Portfolio Tools",
   "Data Analytics & Insights",
   "Blockchain News & Media",
@@ -14,12 +13,14 @@ const ProjectCategories = [
   "Exchanges, DEX, Trading & Liquidity",
   "Developer Education & Mentoring",
   "Developer Tools - Nodes",
+  "Developer Tools - Nodes & Security",
   "Wallet and wallet tools",
   "Developer Tools - Smart Contracts",
   "Developer Tools - Other",
   "Gaming & Entertainment",
   "NFTs, POAPs & Collectibles",
   "Fundraising & Capital",
+  "Fundraising, Capital & Referral Program",
   "Web3 Community Engagement",
   "Web3 Education & Skill Development",
   "Digital Identity & Social Privacy Innovations",
