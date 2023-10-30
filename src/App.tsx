@@ -12,7 +12,7 @@ const ProjectCategories = [
   "DAOs, ReFi, and DAO Tooling",
   "Exchanges, DEX, Trading & Liquidity",
   "Developer Education & Mentoring",
-  "Developer Tools - Nodes & Security",
+  "Explorers, Security & Node Deployment Tools",
   "Wallet and wallet tools",
   "Developer Tools - Smart Contracts",
   "Blockchain Developer Hub",
