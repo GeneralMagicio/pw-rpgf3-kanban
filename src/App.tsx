@@ -29,7 +29,6 @@ const ProjectCategories = [
 
 const individualCategories = [
   "Development & Infrastructure",
-  "Blockchain Development",
   "Layer 2 & Cross-Chain Solutions",
   "Governance Tokenomics and Analytics",
   "Security & Auditing",
