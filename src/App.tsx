@@ -32,7 +32,6 @@ const individualCategories = [
   "Governance Tokenomics and Analytics",
   "Security & Cross-Chain Solutions",
   "Community Building",
-  "Awarness",
   "NFTs",
   "User Experience & Adoption",
   "Content Creation & Media",
