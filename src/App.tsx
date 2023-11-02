@@ -31,7 +31,7 @@ const individualCategories = [
   "Development & Infrastructure",
   "Blockchain Development",
   "Layer 2 & Cross-Chain Solutions",
-  "Governance & Tokenomics",
+  "Governance Tokenomics and Analytics",
   "Security & Auditing",
   "Community Building",
   "Onboarding",
