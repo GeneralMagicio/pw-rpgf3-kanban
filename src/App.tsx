@@ -24,7 +24,7 @@ const ProjectCategories = [
   "Digital Identity & Social Privacy Innovations",
   "Local Blockchain Communities",
   "Community Building",
-  "Ethereum Infrastructure",
+  "Ethereum Core Tech Foundations",
 ];
 
 const individualCategories = [
