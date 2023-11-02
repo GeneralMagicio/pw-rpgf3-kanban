@@ -29,9 +29,8 @@ const ProjectCategories = [
 
 const individualCategories = [
   "Development & Infrastructure",
-  "Layer 2 & Cross-Chain Solutions",
   "Governance Tokenomics and Analytics",
-  "Security & Auditing",
+  "Security & Cross-Chain Solutions",
   "Community Building",
   "Awarness",
   "NFTs",
